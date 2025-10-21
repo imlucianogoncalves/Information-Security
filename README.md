@@ -14,10 +14,9 @@ O objetivo é organizar o aprendizado e servir como referência para consultas f
 
 ## 🧩 Estrutura
 
-Information-Security/
-├── 📘 notes/              → Anotações teóricas e resumos de aulas
-├── 🕵️ writeups/           → WriteUps de desafios e laboratórios
-└── README.md              → Este arquivo
+- **notes/** → Anotações teóricas e resumos de aulas  
+- **writeups/** → WriteUps de desafios e laboratórios  
+- **README.md** → Este arquivo
 
 ---
 
