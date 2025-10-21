@@ -15,7 +15,7 @@ O objetivo é organizar o aprendizado e servir como referência para consultas f
 ## 🧩 Estrutura
 
 - **notes/** → Anotações teóricas e resumos de aulas  
-- **writeups/** → WriteUps de desafios e laboratórios  
+- **documents/** → Documentos importantes (checklists, how to, etc).
 - **README.md** → Este arquivo
 
 ---
