@@ -1,87 +1,180 @@
-# Fundamentos dos Sistemas Operacionais Modernos (DL)
+# RESUMO — FUNDAMENTOS DE SISTEMAS OPERACIONAIS MODERNOS
 
-> Introdução aos sistemas operacionais, seus conceitos, objetivos, funcionamento e principais tipos.
+## 1. Conceito e Função do Sistema Operacional (SO)
+- **Definição:** Programa (ou conjunto deles) que atua como intermediário entre **usuário e hardware**.  
+- **Função:** Gerenciar recursos do computador (CPU, memória, disco, dispositivos de E/S).  
+- **Objetivos principais:**
+  - **Conveniência:** Facilitar o uso do computador.  
+  - **Eficiência:** Utilizar os recursos de forma otimizada.  
+  - **Segurança e integridade:** Proteger dados e processos.  
 
----
-
-## Conceito
-
-Um **sistema operacional (SO)** é um conjunto de programas que gerenciam os recursos do computador e facilitam sua utilização.  
-Ele atua como uma **camada intermediária** entre o **hardware** e os **usuários ou programas**, controlando e otimizando o uso dos recursos disponíveis.
-
-O SO pode ser visto como o **gerente do sistema**, responsável por organizar o uso de cada recurso e garantir que tudo funcione de forma eficiente e segura.
-
----
-
-## Objetivos do Sistema Operacional
-
-- **Oferecer recursos** do sistema de forma simples e acessível ao usuário.  
-- **Gerenciar os recursos** existentes (memória, processador, armazenamento etc.) de modo eficiente.  
-- **Garantir integridade e segurança** dos dados e dispositivos.  
-- **Fornecer uma interface** que facilite a comunicação entre usuário e computador.
+**Autores importantes:**
+- **Stallings (1992):** SO = interface entre usuário e hardware.  
+- **Silberschatz (2001):** SO = ambiente intermediário.  
+- **Tanenbaum (1995):** SO = programa que controla todos os recursos computacionais.  
 
 ---
 
-## Arquitetura de um Computador
-
-### Unidade de Processamento Central (CPU)
-
-- **Registradores:** memórias rápidas internas da CPU.  
-- **Unidade de Controle (UC):** busca e interpreta instruções da memória.  
-- **Unidade Lógica e Aritmética (ULA):** realiza operações matemáticas e lógicas.  
-- **Contador de Programa (PC):** indica a próxima instrução a ser executada.
-
-### Sistema de Memória Principal
-
-Armazena **dados** e **instruções** que estão em uso pelo processador.
-
-### Sistema de Entrada e Saída (E/S)
-
-Controla a **entrada de dados** e a **saída de resultados**.  
-Ciclo de execução:
-1. O PC informa à UC qual instrução deve ser buscada.  
-2. A UC busca a instrução na memória.  
-3. A instrução é decodificada para que a ULA possa executá-la.  
-4. Os dados são transferidos para os registradores.  
-5. O resultado é armazenado na memória ou nos registradores.
+## 2. Objetivos de um Sistema Operacional
+1. Oferecer recursos do sistema de forma simples e transparente.  
+2. Gerenciar recursos existentes (CPU, memória, disco, dispositivos).  
+3. Garantir integridade e segurança dos dados.  
+4. Prover interface (linha de comando → GUI).  
 
 ---
 
-## Arquitetura de Von Neumann
-
-Modelo em que **dados e instruções compartilham a mesma memória**.  
-É composto por **CPU, memória, dispositivos de entrada/saída e barramentos**.  
-A CPU executa as instruções de forma sequencial: **buscar → decodificar → executar**.  
-Esse modelo é a base dos computadores modernos.
+## 3. Evolução Histórica e Interfaces
+- Primeiros SOs: comandos via texto (modo terminal).  
+- Atuais: interfaces gráficas (GUI).  
+- Importância: facilitar a interação humano-computador (IHC).  
 
 ---
 
-## Tipos de Sistemas Operacionais
+## 4. Arquitetura de um Computador (Modelo de Von Neumann)
+**Componentes principais:**
+1. **CPU (Unidade de Processamento Central):**
+   - Registradores: memória ultrarrápida interna.
+   - UC (Unidade de Controle): busca e decodifica instruções.
+   - ULA (Unidade Lógica e Aritmética): faz cálculos e comparações.
+   - PC (Program Counter): indica a próxima instrução.
+2. **Memória principal:** armazena dados e programas em execução.  
+3. **Entrada e Saída (E/S):** dispositivos que recebem e exibem dados.  
 
-| Tipo | Descrição |
+**Ciclo de execução:**  
+Buscar → Decodificar → Executar → Armazenar resultado.
+
+---
+
+## 5. Gargalo de Von Neumann
+- Problema: CPU é mais rápida que a memória.  
+- Consequência: CPU fica ociosa esperando dados.  
+- Soluções modernas: cache, pipelines, memória RAM mais veloz.
+
+---
+
+## 6. Tipos de Sistemas Operacionais
+
+| Tipo | Características | Exemplos |
+|------|------------------|-----------|
+| **Batch (Lote)** | Executa programas em fila, sem interação do usuário. | OS/360, VMS |
+| **De Rede** | Compartilha recursos entre máquinas via rede. | Windows Server, Linux |
+| **Distribuído** | Recursos de várias máquinas atuam como um só sistema. | Amoeba, Plan9 |
+| **Multiusuário** | Vários usuários simultaneamente com segurança. | UNIX, Linux |
+| **Desktop** | Voltado ao usuário final, interface gráfica. | Windows, macOS, Linux |
+| **Servidor** | Gerencia recursos de rede e usuários. | Windows Server, Red Hat |
+| **Embarcado** | Roda em hardware limitado. | Android, VxWorks, Symbian |
+| **Tempo Real** | Respostas com tempo previsível. | QNX, RT-Linux, VxWorks |
+
+---
+
+## 7. Sincronização e Comunicação de Processos
+- Programação concorrente: vários processos ou *threads* executando juntos.  
+- Processos compartilham recursos → precisam de controle.  
+- Sincronização: garante execução correta e sem conflitos.  
+- Comunicação pode ser feita por:
+  - Memória compartilhada (buffer).
+  - Troca de mensagens.
+
+**Regra:**
+- Processo só escreve se o buffer não estiver cheio.  
+- Processo só lê se houver dados disponíveis.  
+- Caso contrário, fica em espera (estado bloqueado).  
+
+---
+
+## 8. Exclusão Mútua
+- Garante que apenas um processo por vez acesse um recurso compartilhado.  
+- Evita conflitos e inconsistências.  
+- Trecho protegido = **Região Crítica**.  
+- Situação problemática = **Condição de Corrida**.  
+
+**Implementação (hardware):**
+- Desabilitação de interrupções.  
+- Instrução Test-and-Set.
+
+---
+
+## 9. Operações Atômicas
+- Atômica: operação que não pode ser interrompida (executa toda de uma vez).  
+- Não atômica: pode ser interrompida no meio.
+
+| Operações Atômicas | Operações Não Atômicas |
+|--------------------|------------------------|
+| Tocar uma campainha | Encher um copo de refrigerante |
+| Desligar um interruptor | Caminhar até a porta |
+| Dar a ignição em um veículo | Tomar uma xícara de café |
+
+- Fundamentais para sincronização e transações seguras.  
+
+---
+
+## 10. Mecanismos de Sincronização
+- Garantem comunicação correta entre processos concorrentes.  
+- Baseiam-se em operações atômicas.  
+- Exemplo: processos que esperam o buffer estar livre ou cheio antes de agir.
+
+---
+
+## 11. Gerência de Memória
+- Função: controlar o uso e a alocação da memória.  
+- Responsável: Gerenciador de Memória do SO.
+
+**Funções principais:**
+- Controlar partes da memória usadas e livres.  
+- Alocar espaço para processos.  
+- Liberar espaço após a execução.  
+- Fazer *swapping* (troca entre RAM e disco).
+
+---
+
+## 12. Unidade de Gerência de Memória (MMU)
+- Hardware que traduz endereços lógicos → físicos.  
+- Usa o Translation Lookaside Buffer (TLB) para acelerar o mapeamento.
+
+---
+
+## 13. Tipos de Gerenciamento de Memória
+
+| Tipo | Descrição | Problemas |
+|------|------------|-----------|
+| **Monoprogramação** | Um único programa por vez. | Pouco eficiente. |
+| **Multiprogramação (partições fixas)** | Divide memória em blocos fixos. | Fragmentação interna. |
+| **Multiprogramação (partições variáveis)** | Tamanho das partições ajustável. | Fragmentação externa. |
+
+---
+
+## 14. Algoritmos de Alocação de Memória
+
+| Algoritmo | Descrição |
+|------------|------------|
+| **First-fit** | Usa o primeiro espaço livre suficiente. |
+| **Best-fit** | Usa o espaço mais ajustado ao tamanho do processo. |
+| **Worst-fit** | Usa o maior espaço livre disponível. |
+| **Next-fit** | Variante circular do First-fit. |
+
+**Problemas:**
+- Fragmentação interna (espaço desperdiçado dentro da partição).  
+- Fragmentação externa (espaços vazios não contíguos).  
+- Solução: compactação de memória (reorganizar os processos).  
+
+---
+
+## 15. Estruturas de Gerência de Memória
+
+| Modo | Descrição |
 |------|------------|
-| **Batch (Lote)** | Executa várias tarefas sem interação do usuário, aproveitando melhor o processador. |
-| **De Rede** | Permite compartilhamento de recursos entre computadores conectados. |
-| **Distribuído** | Conecta vários computadores para agir como um único sistema. |
-| **Multiusuário** | Suporta acesso simultâneo de vários usuários com controle de permissões e segurança. |
-| **Desktop** | Voltado para uso pessoal, com interface gráfica (ex: Windows, macOS, Linux). |
-| **Servidor** | Gerencia grandes volumes de recursos e múltiplos usuários em rede. |
-| **Embarcado** | Feito para dispositivos com poucos recursos (celulares, automação, IoT). |
-| **Tempo Real** | Responde dentro de prazos previsíveis e rigorosos. <br> - *Soft real time:* atrasos reduzem desempenho. <br> - *Hard real time:* atrasos causam falhas críticas. |
+| **Mapa de bits** | Cada posição da memória tem um bit indicando livre/ocupada. |
+| **Lista ligada** | Lista de regiões livres (H) e ocupadas (P). Mais eficiente. |
 
 ---
 
-## Programação Concorrente
-
-Baseia-se na **execução simultânea e cooperativa** de vários processos ou threads.  
-
-Seu objetivo é **melhorar o desempenho** e **aproveitar ao máximo os recursos do sistema**.
-
-Sistemas com um processador < Sistemas com mais de um processador, pois, o com mais de um consegue realizar tarefas simultaneas em diferentes processadores.
-
----
-
-## Comunicação por compartilhamento de memória
-
-O compartilhamento da memória é um mecanismo que realiza a comunicação entre processos, usando uma área da memória > um buffer compartilhado entre vários processos de uma aplicação concorrente.
-
+## 16. Conceitos-Chave que Mais Caem
+- SO = intermediário entre usuário e hardware.  
+- Objetivos: conveniência, eficiência e segurança.  
+- Von Neumann: CPU + memória + E/S.  
+- Gargalo: lentidão da memória frente à CPU.  
+- Sincronização: processos cooperando corretamente.  
+- Exclusão mútua: um processo por vez na região crítica.  
+- Operações atômicas: indivisíveis e seguras.  
+- Gerência de memória: alocação, swap, fragmentação, MMU.  
+- Multiprogramação: melhora o uso da CPU.
